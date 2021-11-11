@@ -1,0 +1,350 @@
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="template" content="Web site created by Jhoan Carrero" />
+  <title>Prueba</title>
+  <style>
+    body {
+      background-color: white;
+      overflow-x: hidden;
+      padding: 10px;
+    }
+
+    p {
+      text-align: justify;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    textarea {
+      width: 100%;
+      resize: none;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      text-align: center;
+    }
+
+    .boxes {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .container-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .box {
+      width: 80px;
+      height: 80px;
+      border: 3px solid black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      color: brown;
+    }
+
+    .task {
+      margin-bottom: 100px;
+    }
+  </style>
+  <script src="script.js" defer></script>
+
+<body>
+
+  <div class="task">
+    <h1>El teorema de Nicómaco</h1>
+    <span>Tiempo Limite: 2.0 s Memoria Limite: 512.0 MB</span>
+    <p>Entrada: standard Salida: standard</p>
+    <h2>Description</h2>
+    <p>Nicómaco de Gerasa vivió en Palestina entre los siglos I y II de nuestra era.
+      Escribió Arithmetike eisagoge (Introducción a la aritmética) que fue el primer
+      tratado en que la aritmética se consideraba de forma independiente de la
+      geometría. Este libro se utilizó durante más de mil años como texto básico de la
+      aritmética, a pesar de que Nicómaco no demostraba sus teoremas, sino que
+      únicamente los ilustraba con ejemplos numéricos.<br><br>
+      Considera la siguiente propiedad descubierta por Nicómaco de Gerasa:
+      <br><br>
+      • Sumando el primer impar se obtiene el primer cubo;<br>
+      • Sumando los dos siguientes impares, se obtiene el segundo cubo;<br>
+      • Sumando los tres siguientes, se obtiene el tercer cubo, etc.<br>
+      <br>Así tenemos: "El enésimo número cúbico
+      <math>
+        <msup>
+          <mi>n</mi>
+          <mn>3</mn>
+        </msup>
+      </math>
+      es una suma de números impares
+      <math>
+        <mi>n</mi>
+      </math>
+      consecutivos", como por ejemplo:<br><br>
+      •
+      <math>
+        <msup>
+          <mi>1</mi>
+          <mn>3</mn>
+        </msup>
+        <mn> = 1</mn>
+      </math><br>
+      •
+      <math>
+        <msup>
+          <mi>2</mi>
+          <mn>3</mn>
+        </msup>
+        <mn> = 3 + 5</mn>
+      </math><br>
+      •
+      <math>
+        <msup>
+          <mi>3</mi>
+          <mn>3</mn>
+        </msup>
+        <mn> = 7 + 9 + 11</mn>
+      </math><br>
+    </p>
+    <h2>Entrada</h2>
+    <p>
+      La entrada consiste en una cadena de texto
+      separados por "<strong>,</strong>"
+      con numeros enteros
+      <strong>( 1 ≤ n ≤ 100 )</strong>.
+    </p>
+    <h2>Salida</h2>
+    <p>Por cada numero de prueba deberá imprimir
+      <strong>n</strong>
+      números impares consecutivos(cada
+      par separado por un signo "<strong>+</strong>") que suman el enésimo número cúbico.
+    </p>
+    <table>
+      <tr>
+        <th>
+          <h2>Entrada</h2>
+        </th>
+        <th>
+          <h2>Salida</h2>
+        </th>
+      </tr>
+      <tr>
+        <td><input id="task1" type="text" placeholder="1,2,3,4,5,6"></td>
+        <td>
+          <div id="resp1"></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="task">
+    <h1>Juego de Cajas</h1>
+    <span>Tiempo Limite: 1.0 s Memoria Limite: 512.0 MB</span>
+    <p>Entrada: standard Salida: standard</p>
+    <h2>Description</h2>
+    <p>
+      Carlos, se encuentra inmerso en un juego de realidad virtual, en el cual se
+      encuentra con distintos retos que ponen a prueba su ingenio. En uno de los
+      últimos retos Carlos debe mover una serie de cajas para obtener de esta forma el
+      mayor puntaje posible y superar el reto. El reto consiste en lo siguiente, se
+      tendrán filas de cajas, como se muestran en la imagen.
+    </p>
+    <div class="boxes">
+      <div class="container-box">
+        <div class="box">5</div>
+        <div class="box">3</div>
+        <div class="box">7</div>
+        <div class="box">1</div>
+      </div>
+      <div class="container-box">
+        <div class="box">1</div>
+        <div class="box">4</div>
+        <div class="box">3</div>
+        <div class="box">9</div>
+      </div>
+    </div>
+    <p>
+      Las cajas de la primera fila contienen cada una, cierta cantidad de monedas en
+      su interior, en el ejemplo se puede observar que la primera caja tiene 5 monedas,
+      la segunda caja 3 monedas, la tercera 7 monedas y la cuarta 1 moneda. Las
+      cajas de la segunda fila contienen cada una, un multiplicador que hará crecer las
+      monedas que tienen en la caja que esta arriba de ellas. En el ejemplo de la
+      imagen, los multiplicadores son 1, 4,3 y 9 en ese orden.
+      <br><br>
+      Finalmente en base a la posición de los multiplicadores se determina el puntaje
+      que obtiene Carlos, en el ejemplo de la imagen, el puntaje de Carlos se calcula de
+      la siguiente manera:
+      <br><br><strong>
+        5*1 + 3*4 + 7*3 + 1*9 = 5 + 12 + 21 + 9 = 47
+      </strong><br><br>
+      Como ya habrás notado este no es el puntaje máximo que puede alcanzar Carlos.
+      La imagen de abajo muestra como Carlos tiene que colocar las cajas de
+      multiplicadores, para que pueda obtener el máximo puntaje posible.
+    </p>
+    <div class="boxes">
+      <div class="container-box">
+        <div class="box">5</div>
+        <div class="box">3</div>
+        <div class="box">7</div>
+        <div class="box">1</div>
+      </div>
+      <div class="container-box">
+        <div class="box">4</div>
+        <div class="box">3</div>
+        <div class="box">9</div>
+        <div class="box">1</div>
+      </div>
+    </div>
+    <p>
+      En la figura se observa que Carlos obtiene un puntaje máximo de 93. Carlos
+      puede únicamente mover las cajas de multiplicadores y no puede cambiar las
+      cajas que contienen monedas, ayuda a Carlos a determinar cual debe ser el
+      orden en el que debe poner las cajas con multiplicadores para alcanzar el
+      máximo puntaje.
+    </p>
+    <h2>Entrada</h2>
+    <p>
+      Una cadena de texto que separados por 
+      "<strong>;</strong>"
+      representando la primera parte la cantidad de cajas
+      con monedas que tiene Carlos separados por
+      "<strong>,</strong>"
+      , y la otra subcadena
+      restante la cantidad de cajas con multiplicadores
+      que tiene Carlos separados tambien por
+      "<strong>,</strong>"
+      .
+    </p>
+    <h2>Salida</h2>
+    <p>
+      Debes imprimir el orden óptimo de multiplicadores, que obtienen el máximo
+      puntaje. Se garantiza que para cada disposición de cajas de monedas y
+      multiplicadores, solo existirá una solución que obtenga el máximo puntaje.
+    </p>
+    <table>
+      <tr>
+        <th>
+          <h2>Entrada</h2>
+        </th>
+        <th>
+          <h2>Salida</h2>
+        </th>
+      </tr>
+      <tr>
+        <td><input id="task2" type="text" placeholder="5,3,7,1;1,4,3,9"></td>
+        <td>
+          <div id="resp2"></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="task">
+    <h1>Coincidencia Exacta</h1>
+    <span>Tiempo Limite: 2.0 s Memoria Limite: 512.0 MB</span>
+    <p>Entrada: standard Salida: standard</p>
+    <h2>Description</h2>
+    <p>
+      Mijael quiere aprender manejo de cadenas para poder ganar los concursos de la
+      ICPC y pide ayuda a su entrenador. Específicamente ahora esta aprendiendo
+      sobre coincidencias exactas de cadenas que consiste en dado
+      <strong><i>2</i></strong>
+      cadenas, un texto
+      <strong><i>T</i></strong>
+      y un patron
+      <strong><i>P</i></strong>
+      encontrar las posiciones
+      <strong><i>d</i></strong>
+      en las que ocurre
+      <strong><i>P</i></strong>
+      en
+      <strong><i>T</i></strong>.
+      <br><br>
+      Formalmente por una posicion
+      <strong><i>d</i></strong>
+      si la subcadena
+      <strong><i>T[ d , d + 1 , ... , d+ |P| -1] = P</i></strong>
+      entonces existe una coincidencia exacta
+      desde la posicion
+      <strong><i>d</i></strong>
+      , donde
+      <strong><i>|S|</i></strong>
+      = longitud de la cadena
+      <strong><i>S</i></strong>.
+      <br><br>
+      El entrenador da un texto y un patron a Mijael y le pide que encuentre todas
+      las posiciones en las que ocurre en , Mijael para impresionar a su
+      entrenador quiere contar mas cadenas y se da cuenta que si para una posicion
+      cambia una subcadena de que tenga el tamaño menor o igual a por cualquier
+      subcadena para asi contar una coincidencia exacta mas y luego vuelve a colocar
+      la cadena en su forma original su entrenador no se da cuenta del cambio y asi
+      Mijael cuenta una coincidencia exacta mas para impresionar mas a su
+      entrenador.
+      <br><br>
+      Puedes ayudar a Mijael a encontrar todas las posiciones antes definidas
+    </p>
+    <h2>Entrada</h2>
+    <p>
+      La primera linea contiene el texto
+      <strong><i>T</i></strong>
+      . La segunda linea contiene el patron
+      <strong><i>P</i></strong>
+      .
+      Ambas cadenas contienen unicamente letras del alfabeto ingles en minusculas.
+      La longitud de las cadenas estara entre y
+      <strong>1</strong> y <strong><math>
+          <msup>
+            <mi>10</mi>
+            <mn>6</mn>
+          </msup>
+        </math></strong>
+      .
+      <br><br>
+      La tercera linea contiene un numero
+      <strong>k ( 0 ≤ k ≤ <math>
+          <msup>
+            <mi>10</mi>
+            <mn>6</mn>
+          </msup>
+        </math> )</strong>.
+    </p>
+    <h2>Salida</h2>
+    <p>
+      Imprimir en la primera linea el numero de posiciones. 
+      <br>
+      En la segunda linea imprimir las posiciones en orden acendente separadas por un espacio.
+    </p>
+    <table>
+      <tr>
+        <th>
+          <h2>Entrada</h2>
+        </th>
+        <th>
+          <h2>Salida</h2>
+        </th>
+      </tr>
+      <tr>
+        <td><input id="task3" type="text"></td>
+        <td>
+          <div id="resp3"></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</body>
+
+</html>
