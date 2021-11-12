@@ -33,6 +33,9 @@
       text-align: center;
     }
 
+    input[type="text"]{
+      width: 100%;
+    }
     .boxes {
       display: flex;
       flex-direction: column;
@@ -61,6 +64,8 @@
     .task {
       margin-bottom: 100px;
     }
+
+
   </style>
   <script src="script.js" defer></script>
 
@@ -217,7 +222,7 @@
     </p>
     <h2>Entrada</h2>
     <p>
-      Una cadena de texto que separados por 
+      Una cadena de texto que separados por
       "<strong>;</strong>"
       representando la primera parte la cantidad de cajas
       con monedas que tiene Carlos separados por
@@ -323,7 +328,7 @@
     </p>
     <h2>Salida</h2>
     <p>
-      Imprimir en la primera linea el numero de posiciones. 
+      Imprimir en la primera linea el numero de posiciones.
       <br>
       En la segunda linea imprimir las posiciones en orden acendente separadas por un espacio.
     </p>
@@ -344,6 +349,142 @@
       </tr>
     </table>
   </div>
+
+
+  <div class="task">
+    <h1>Binario a Cuaternario</h1>
+    <span>Tiempo Limite: 2.0 s Memoria Limite: 512.0 MB</span>
+    <p>Entrada: standard Salida: standard</p>
+    <h2>Description</h2>
+    <p>
+      Dado un número en base binaria (2) convertir este en base cuaternaria (4).
+    </p>
+    <h2>Entrada</h2>
+    <p>
+      La entrada consiste de un número X en base binaria
+      <strong>X ( 1 ≤ X ≤ <math>
+          <msup>
+            <mi>2</mi>
+            <mn>1000000</mn>
+          </msup>
+        </math> )</strong>.
+    </p>
+    <h2>Salida</h2>
+    <p>
+      Imprimir el equivalente del número X dado a base cuaternaria (4).
+    </p>
+    <table>
+      <tr>
+        <th>
+          <h2>Entrada</h2>
+        </th>
+        <th>
+          <h2>Salida</h2>
+        </th>
+      </tr>
+      <tr>
+        <td><input id="task4" type="text" placeholder="100110"></td>
+        <td>
+          <div id="resp4"></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="task">
+    <h1>Arreglo 1</h1>
+    <span>Tiempo Limite: 2.0 s Memoria Limite: 512.0 MB</span>
+    <p>Entrada: standard Salida: standard</p>
+    <h2>Description</h2>
+    <p>
+      Dado un arreglo de N elementos y Q pares de números
+      <strong>
+        i, j (0≤i≤j&ltN)
+      </strong>
+      que representan un segmento del arreglo.<br><br>
+      Responder si en ese segmento del arreglo los números son unicos.
+    </p>
+    <h2>Entrada</h2>
+    <p>
+      La entrada consiste de un string separados con
+      <strong>","</strong> representando el array,
+      luego los intervalos de pruebas separados por
+      <strong>";"</strong> cada uno e internamente por
+      <strong>","</strong>
+    </p>
+    <h2>Salida</h2>
+    <p>
+      Por cada par de numeros del intervalo se debe imprimir
+      <strong>"no repetidos"</strong> si los numeros del rango son unicos y
+      se debe imprimir <strong>"repetidos"</strong> si los
+      numeros en el rango <strong><i>i,j</i></strong> no son únicos.
+    </p>
+    <table>
+      <tr>
+        <th>
+          <h2>Entrada</h2>
+        </th>
+        <th>
+          <h2>Salida</h2>
+        </th>
+      </tr>
+      <tr>
+        <td><input id="task5" type="text" placeholder="3,5,1,2,3,4;0,2;0,3;0,5;3,5"></td>
+        <td>
+          <div id="resp5"></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  
+  <div class="task">
+    <h1>Subconjuntos</h1>
+    <span>Tiempo Limite: 2.0 s Memoria Limite: 512.0 MB</span>
+    <p>Entrada: standard Salida: standard</p>
+    <h2>Description</h2>
+    <p>
+      Vamos directo al problema:
+      <br><br>
+      Dado un conjunto de números, imprimir todos los subconjuntos de tamaño 3, por ejemplo si tengo el conjunto
+      <strong>{3,5,8,2}</strong>
+      todos los subconjuntos de tamaño 3 serian:
+      <br><br><strong>
+      * {3,5,8} <br> 
+      * {3,5,2} <br>
+      * {3,8,2} <br>
+      * {5,8,2} <br>
+      </strong><br>
+      Tu tarea es imprimir todos los subconjuntos de tamaño 3
+      dado un conjunto de N elementos.
+    </p>
+    <h2>Entrada</h2>
+    <p>
+      La entrada consiste de un string separados con
+      <strong>","</strong> representando el array
+    </p>
+    <h2>Salida</h2>
+    <p>
+      Debes imprimir todos los subconjuntos de tamaño 3 del conjunto dado.
+    </p>
+    <table>
+      <tr>
+        <th>
+          <h2>Entrada</h2>
+        </th>
+        <th>
+          <h2>Salida</h2>
+        </th>
+      </tr>
+      <tr>
+        <td><input id="task6" type="text" placeholder="3,5,8,2"></td>
+        <td>
+          <div id="resp6"></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
 
 </body>
 

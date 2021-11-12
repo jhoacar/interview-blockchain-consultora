@@ -101,25 +101,50 @@ const loadTask2 = (task, resp) => {
     //Proceso de extraccion de la informacion
     const inputNumbers = task.value.split(";").filter(exists => exists);
     const [firstNumbers, secondNumbers] = inputNumbers.map(
-    numbers => numbers.split(",")                        //Realizamos separacion por ,  
-                      .map(number => parseInt(number))   //Realizamos conversion a enteros
-                      .filter(number=>!isNaN(number)));  //Realizamos validacion de caracteres validos
+        numbers => numbers.split(",")                        //Realizamos separacion por ,  
+            .map(number => parseInt(number))   //Realizamos conversion a enteros
+            .filter(number => !isNaN(number)));  //Realizamos validacion de caracteres validos
 
-    if(firstNumbers.length!=secondNumbers.length) 
+    if (firstNumbers.length != secondNumbers.length)
         return; //Se garantiza que no se cargue nada si no cumple la condicion de igualdad en informacion
 
     //Logica de la tarea
     const dictNumbers = getDictArray(firstNumbers, secondNumbers);
-    const response = getParallelArray(firstNumbers,dictNumbers).reduce((prev,curr)=>prev+" "+curr);
-    
+    const response = getParallelArray(firstNumbers, dictNumbers).reduce((prev, curr) => prev + " " + curr);
+
     //Ejecucion de la tarea
     loadAtHtml(response, resp);
 }
 
 const loadTask3 = (task, resp) => {
     const inputNumbers = task.value;
-    const response = inputNumbers;
+    const response = "Tarea aun por realizar"; //Tarea no cargada
     loadAtHtml(response, resp);
+}
+
+const loadTask4 = (task,resp)=>{
+    const inputNumbers = task.value;
+    const response = binaryToQuaternary(inputNumbers);
+    loadAtHtml(response,resp);
+}
+
+const loadTask5 = (task,resp)=>{
+    const input=task.value.split(";");
+    const inputNumbers = input.shift().split(",").map(n=>+n).filter(n=>!isNaN(n));
+    const intervals = input.map(numbers=>numbers.split(",").map(n=>+n).filter(n=>!isNaN(n)));
+    let outputString = "";
+    intervals.map(interval=>{
+        outputString+=verifySubArray(inputNumbers,interval)+"\n";
+    })
+    loadAtHtml(outputString,resp);
+}
+
+const loadTask6 = (task,resp)=>{
+    const inputNumbers = task.value.split(",");
+    const outputArray = [];
+    printAllSubsets(inputNumbers,outputArray);
+    const outputString = outputArray.reduce((prev,curr)=>prev+"\n"+curr);
+    loadAtHtml(outputString,resp);
 }
 
 /*
@@ -145,14 +170,129 @@ const task3 = () => {
     const $resp3 = document.getElementById("resp3");
     loadTask3($task3, $resp3);
 }
+const task4 = () => {
+    const $task4 = document.getElementById("task4");
+    const $resp4 = document.getElementById("resp4");
+    loadTask4($task4, $resp4);
+}
+const task5 = () => {
+    const $task5 = document.getElementById("task5");
+    const $resp5 = document.getElementById("resp5");
+    loadTask5($task5, $resp5);
+}
+
+const task6 = () => {
+    const $task6 = document.getElementById("task6");
+    const $resp6 = document.getElementById("resp6");
+    loadTask6($task6, $resp6);
+}
 
 /*
 *****************************************************************************************************
 ----------------Metodos que detectan que se oprimio Enter y se debe ejecutar su tarea----------------
 *****************************************************************************************************
 */
+
+
 document.getElementById("task1").addEventListener("keyup", ({ key }) => { if (key == "Enter") task1(); });
 
 document.getElementById("task2").addEventListener("keyup", ({ key }) => { if (key == "Enter") task2(); });
 
 document.getElementById("task3").addEventListener("keyup", ({ key }) => { if (key == "Enter") task3(); });
+
+document.getElementById("task4").addEventListener("keyup", ({ key }) => { if (key == "Enter") task4(); });
+
+document.getElementById("task5").addEventListener("keyup", ({ key }) => { if (key == "Enter") task5(); });
+
+document.getElementById("task6").addEventListener("keyup", ({ key }) => { if (key == "Enter") task6(); });
+
+/*************************************************/
+
+//Tabla con la conversion de binario a cuaternario
+const dictBinaryToCuaternary = {
+    "00": "0",
+    "01": "1",
+    "10": "2",
+    "11": "3",
+}
+/*
+	Pre condicion: Un string con la informacion de los bits, solo "0" y "1"
+	Post condicion: Un string con la informacion de los bits pero en base cuatro (cuaternaria)
+	Complejidad Algoritmica O(n), garantizada por solo recorrer una sola vez la cadena de bits,
+    y decodificar su informacion a base 4.
+*/
+const binaryToQuaternary = bits => {
+    
+    //Tomaremos de dos en dos el string binario
+    //Verificamos que sea de longitud par o impar, para poder agrupar los bits adecuadamente
+    if (bits.length % 2 != 0) //Si es impar, le agregamos un cero no significativo a los bits.
+        bits = "0" + bits;
+    let cuaternaries = "";
+    for (let i = bits.length - 1; i > 0; i -= 2) {
+        const binaryCode = bits[i - 1] + bits[i];
+        cuaternaries = dictBinaryToCuaternary[binaryCode] + cuaternaries;
+    }
+    return cuaternaries;
+}
+
+
+/*************************************************/
+
+/*************************************************/
+
+/*
+	Pre-condiciones:
+    	* Un array con la informacion a evaluar
+        * Un array con 2 numeros, representando el intervalo a evaluar del array
+    Post-condiciones:
+    	Retorna "repetidos" si encuentra mas de una coincidencia en el intervalo propuesto
+        o "no repetidos" en caso contrario.
+*/
+const verifySubArray = (array,interval)=>{ 
+	const [start,end] = interval; 
+    const dict = {};
+    for(let i=(+start); i<(+end); i++){
+        if(dict[array[i]]) return "repetidos"; //Si ya existe en el diccionario entonces es repetido
+        dict[array[i]] = true; //O sino garantizamos que exista
+    }
+    return "no repetidos";
+}
+
+/*************************************************/
+
+/*************************************************/
+
+
+/*
+    Metodo recursivo para mostrar en un formato especifico "{ X, Y, Z }" todos los subconjuntos
+    de dimension predefinido de un array
+    Pre-condiciones: 
+        * Un array representando el conjunto a realizar su combinatoria
+        * Un array vacio de dimension = DIMENSION PREDEFINIDA DEL SUBCONJUNTO
+        * La dimension de la combinatoria del subconjunto
+        * El comienzo del array donde realizara la combinatoria, por defecto es cero
+*/
+
+const printAllSubsets = (inputArray ,outputArray, subsetDimension=3, recursiveArray=[,,,],start=0,subsets={}) => {
+    if (subsetDimension === 0){
+        const subset = recursiveArray.join(",");
+        const outputFormat = `{ ${recursiveArray[0]}, ${recursiveArray[1]}, ${recursiveArray[2]} }`;//{ X, Y, Z } Formato de salida
+
+        if(!subsets[subset]) //Verificamos que sea unico cada subset que se muestra en pantalla
+        	outputArray.push(outputFormat);
+        subsets[subset] = true; //Lo hacemos que sea unico guardandolo en un diccionario
+        return;
+    }
+    for (let i = start; i <= inputArray.length - subsetDimension; i++) {
+        recursiveArray[recursiveArray.length - subsetDimension] = inputArray[i];
+        printAllSubsets(inputArray, outputArray,subsetDimension - 1, recursiveArray , i + 1,subsets);
+    }
+}
+
+/*************************************************/
+
+
+
+
+
+
